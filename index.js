@@ -2,16 +2,19 @@ const express = require("express");
 const app = express();
 const port = 8000;
 
+const db = require("./config/mongoose");
 //Setting Up Ststics
 app.use(express.static("./assets"));
 
+// app.use(app.router);
+// routes.initalize(app)
 //Use Express Layouts
 const expressLayouts = require("express-ejs-layouts");
 app.use(expressLayouts);
 
 //Ectract Styles and Scripts from sub-pages into layouts
-app.use("layout extractStyles", true);
-app.use("layout extractScripts", true);
+app.set("layout extractStyles", true);
+app.set("layout extractScripts", true);
 
 // Use Express Router
 app.use("/", require("./routes"));
