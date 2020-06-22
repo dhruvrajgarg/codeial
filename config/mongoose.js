@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const router = require("../routes/users");
+
 mongoose.connect("mongodb://localhost/codeial_development",{
   useNewUrlParser: true,
 });
@@ -12,4 +12,4 @@ db.once("open", function () {
 });
 
 module.exports = db;
-module.exports = router;
+
