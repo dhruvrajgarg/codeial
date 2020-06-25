@@ -12,40 +12,8 @@
     <%}%>
     <div class="posts-container">
         <ul class="posts-list">
-            <%for(let post of posts){ %>
-                <li>
-                    <p>
-                        <%= post.content %>
-                        <br>
-                        <small>
-                        <%= post.user.name %>
-                        </small>
-                    </p>
-                    <div class="post-comments">
-                        <% if(locals.user){%>
-                            <form action="/comments/create" method="post">
-                                <input type="text" name="content" placeholder="Type Here to add comments..." required>
-                                <input type="hidden" name="post" value="<%=post._id%>">
-                                <input type="submit" value="Add Comment">
-                            </form>
-                        <%}%>
-                        <div class="comments-container">
-                            <ul class="comments-<%= post._id %>">
-                                <%for(comment of post.comments){ %>
-                                    <li>
-                                        <p>
-                                            <%= comment.content %>
-                                            <br>
-                                            <small>
-                                            <%= comment.user.name %>
-                                            </small>
-                                        </p>
-                                    </li>
-                                <%}%>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
+            <% for(post of posts){ %>
+                <%- include('_post.ejs') -%>
             <%}%>
         </ul>
     </div>
