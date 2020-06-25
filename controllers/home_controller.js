@@ -1,5 +1,5 @@
 const Post = require("../models/post");
-
+const User = require('../models/user'); 
 module.exports.home = function (req, res) {
   Post.find({})
     .populate("user")
@@ -15,10 +15,16 @@ module.exports.home = function (req, res) {
         return;
       }
       //console.log(Post.populated('user'));
-
-      return res.render("home", {
-        title: "Home",
-        posts: fetchedPosts,
+      User.find({}, function(err , fetchedUsers){
+        if (err) {
+          console.log("Error in Fetching users", err);
+          return;
+        }
+        return res.render("home", {
+          title: "Home",
+          posts: fetchedPosts,
+          all_users : fetchedUsers
+        });
       });
     });
 };
