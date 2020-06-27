@@ -8,6 +8,7 @@ const expressLayouts = require("express-ejs-layouts");
 const session = require("express-session");
 const passport = require("passport");
 const passportLocal = require("./config/passport-local-strategy");
+const passportJWT = require('./config/passport-jwt-strategy');
 const MongoStore = require("connect-mongo")(session);
 //SCSS
 const sassMiddleware = require("node-sass-middleware");
@@ -31,7 +32,7 @@ app.use(cookieParser());
 //Setting Up Ststics
 app.use(express.static("./assets"));
 //Making Uploads folder available
-app.use('/uploads' , express.static(__dirname + '/uploads'))
+app.use('./uploads' , express.static(__dirname + '/uploads'))
 
 //Use Express Layouts
 app.use(expressLayouts);
